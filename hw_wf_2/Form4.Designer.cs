@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Coyntry = new System.Windows.Forms.ListBox();
-            this.City = new System.Windows.Forms.ListBox();
+            this.CountryF = new System.Windows.Forms.ListBox();
+            this.CityF = new System.Windows.Forms.ListBox();
             this.Phone = new System.Windows.Forms.MaskedTextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -54,8 +54,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.Coyntry);
-            this.panel1.Controls.Add(this.City);
+            this.panel1.Controls.Add(this.CountryF);
+            this.panel1.Controls.Add(this.CityF);
             this.panel1.Controls.Add(this.Phone);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.radioButton2);
@@ -77,26 +77,23 @@
             this.panel1.Size = new System.Drawing.Size(283, 277);
             this.panel1.TabIndex = 0;
             // 
-            // Coyntry
+            // CountryF
             // 
-            this.Coyntry.FormattingEnabled = true;
-            this.Coyntry.Items.AddRange(new object[] {
-            "Россия",
-            "Китай"});
-            this.Coyntry.Location = new System.Drawing.Point(100, 127);
-            this.Coyntry.Name = "Coyntry";
-            this.Coyntry.Size = new System.Drawing.Size(120, 17);
-            this.Coyntry.TabIndex = 20;
+            this.CountryF.FormattingEnabled = true;
+            this.CountryF.Location = new System.Drawing.Point(100, 127);
+            this.CountryF.Name = "CountryF";
+            this.CountryF.Size = new System.Drawing.Size(120, 17);
+            this.CountryF.TabIndex = 20;
+            this.CountryF.Tag = "";
+            this.CountryF.SelectedIndexChanged += new System.EventHandler(this.City_SelectedIndexChanged);
             // 
-            // City
+            // CityF
             // 
-            this.City.FormattingEnabled = true;
-            this.City.Location = new System.Drawing.Point(100, 150);
-            this.City.Name = "City";
-            this.City.Size = new System.Drawing.Size(120, 17);
-            this.City.TabIndex = 19;
-            this.City.Click += new System.EventHandler(this.City_SelectedIndexChanged);
-            this.City.SelectedIndexChanged += new System.EventHandler(this.City_SelectedIndexChanged);
+            this.CityF.FormattingEnabled = true;
+            this.CityF.Location = new System.Drawing.Point(100, 150);
+            this.CityF.Name = "CityF";
+            this.CityF.Size = new System.Drawing.Size(120, 17);
+            this.CityF.TabIndex = 19;
             // 
             // Phone
             // 
@@ -294,7 +291,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.MaskedTextBox Phone;
-        private System.Windows.Forms.ListBox Coyntry;
-        private System.Windows.Forms.ListBox City;
+        private System.Windows.Forms.ListBox CountryF;
+        private System.Windows.Forms.ListBox CityF;
     }
 }

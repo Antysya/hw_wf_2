@@ -15,12 +15,19 @@ namespace hw_wf_2
 {
     public partial class Form4 : Form
     {
+        string[] countries = {"Россия", "Китай", "Япония" };
+        string[] RF = { "Москва", "Санкт-Петербург", "Владивосток", "Ярославль" };
+        string[] CH = { "Шанхай", "Пекин", "Сиань", "Ухань" };
+        string[] Jap = { "Токио", "Кобо" };
+
         public Form4()
         {
             InitializeComponent();
+            CountryF.Items.AddRange(countries);
+            CityF.Items.AddRange(RF);
+            CountryF.SelectedIndexChanged += City_SelectedIndexChanged;
+
         }
-
-
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -33,9 +40,9 @@ namespace hw_wf_2
         private void button1_Click(object sender, EventArgs e)
         {
             string strMessage = "ФИО:" + LN.Text + " " + FN.Text + " " + Patr.Text + "\n";
-            //strMessage += "Место проживания:" + textBoxCountry.Text + ", г." + textBoxCity.Text + "\n";
+            strMessage += "Место проживания:" + CountryF.SelectedItem.ToString() + ", г." + CityF.SelectedItem.ToString() + "\n";
             strMessage += "Телефон: " + Phone.Text + "\n";
-            strMessage += "Дата рождения: " + dateTimePicker1.Value.ToShortDateString() +"\n";
+            strMessage += "Дата рождения: " + dateTimePicker1.Value.ToShortDateString() + "\n";
             if (radioButton1.Checked == true)
             {
                 strMessage += "Пол: мужской";
@@ -44,37 +51,25 @@ namespace hw_wf_2
             {
                 strMessage += "Пол: женский";
             }
-            MessageBox.Show(strMessage,"Анкетные данные");
+            MessageBox.Show(strMessage, "Анкетные данные");
             string st_json = JsonSerializer.Serialize(strMessage);
         }
 
-         public class CountryCity
+       private void City_SelectedIndexChanged(object sender, EventArgs e)
         {
-            public string Country { get; set; }
-            public string City { get; set; }
-        }
-
-        private void City_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            List<CountryCity> countryCities = new List<CountryCity>
-        {
-            new CountryCity{Country="Россия", City = "Москва"},
-            new CountryCity{Country="Россия", City = "Санкт-Петербург"},
-            new CountryCity{Country="Россия", City = "Владивосток"},
-            new CountryCity{Country="Россия", City = "Ярославль"},
-            new CountryCity{Country="Китай", City = "Шанхай"},
-            new CountryCity{Country="Китай", City = "Пекин"},
-            new CountryCity{Country="Китай", City = "Сиань"},
-            new CountryCity{Country="Китай", City = "Ухань"},
-        };
-            List<string> City = new List<string>();
-            foreach (CountryCity item in countryCities)
+            if (CountryF.SelectedItem.ToString() == "Россия") {
+                CityF.Items.Clear();
+                CityF.Items.AddRange(RF); }
+            else if (CountryF.SelectedItem.ToString() == "Китай")
             {
-                if (item.Country == Coyntry.Text)
-                    City.Add(item.City);
+                CityF.Items.Clear();
+                CityF.Items.AddRange(CH);
             }
-            
-           
+            else
+            {
+                CityF.Items.Clear();
+                CityF.Items.AddRange(Jap);
+            }
         }
     }
 }
